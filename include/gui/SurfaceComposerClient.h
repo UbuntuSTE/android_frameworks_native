@@ -74,6 +74,8 @@ public:
     /* triggers screen on and waits for it to complete */
     static void unblankDisplay(const sp<IBinder>& display);
 
+    static status_t getDisplayInfo(int32_t displayId, DisplayInfo* info);
+
     // ------------------------------------------------------------------------
     // surface creation / destruction
 
