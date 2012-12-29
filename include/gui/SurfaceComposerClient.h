@@ -76,6 +76,10 @@ public:
 
     static status_t getDisplayInfo(int32_t displayId, DisplayInfo* info);
 
+    static ssize_t getDisplayWidth(int32_t displayId);
+    static ssize_t getDisplayHeight(int32_t displayId);
+    static ssize_t getDisplayOrientation(int32_t displayId);
+
     // ------------------------------------------------------------------------
     // surface creation / destruction
 
