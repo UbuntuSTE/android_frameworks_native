@@ -165,7 +165,7 @@ protected:
             EGLDisplay display, EGLSyncKHR eglFence);
 
     // returns true iff the slot still has the graphicBuffer in it.
-    bool stillTracking(int slot, const sp<GraphicBuffer> graphicBuffer);
+    virtual bool stillTracking(int slot, const sp<GraphicBuffer> graphicBuffer);
 
     // addReleaseFence* adds the sync points associated with a fence to the set
     // of sync points that must be reached before the buffer in the given slot

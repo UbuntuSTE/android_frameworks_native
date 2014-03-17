@@ -170,7 +170,6 @@ private:
     wp<IBinder> mDisplayToken;
 
     // ANativeWindow this display is rendering into
-    sp<ANativeWindow> mNativeWindow;
     sp<DisplaySurface> mDisplaySurface;
 
     EGLDisplay      mDisplay;

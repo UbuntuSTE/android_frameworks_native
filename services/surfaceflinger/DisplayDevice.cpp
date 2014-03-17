@@ -26,6 +26,7 @@
 
 #include <ui/DisplayInfo.h>
 #include <ui/PixelFormat.h>
+#include <ui/FramebufferNativeWindow.h>
 
 #include <gui/Surface.h>
 
@@ -73,8 +74,7 @@ DisplayDevice::DisplayDevice(
       mLayerStack(NO_LAYER_STACK),
       mOrientation()
 {
-    mNativeWindow = new Surface(producer, false);
-    ANativeWindow* const window = mNativeWindow.get();
+    ANativeWindow* const window = new FramebufferNativeWindow();
 
     int format;
     window->query(window, NATIVE_WINDOW_FORMAT, &format);
@@ -460,12 +460,12 @@ void DisplayDevice::dump(String8& result) const {
     const Transform& tr(mGlobalTransform);
     result.appendFormat(
         "+ DisplayDevice: %s\n"
-        "   type=%x, hwcId=%d, layerStack=%u, (%4dx%4d), ANativeWindow=%p, orient=%2d (type=%08x), "
+        "   type=%x, hwcId=%d, layerStack=%u, (%4dx%4d), orient=%2d (type=%08x), "
         "flips=%u, isSecure=%d, secureVis=%d, acquired=%d, numLayers=%u\n"
         "   v:[%d,%d,%d,%d], f:[%d,%d,%d,%d], s:[%d,%d,%d,%d],"
         "transform:[[%0.3f,%0.3f,%0.3f][%0.3f,%0.3f,%0.3f][%0.3f,%0.3f,%0.3f]]\n",
         mDisplayName.string(), mType, mHwcDisplayId,
-        mLayerStack, mDisplayWidth, mDisplayHeight, mNativeWindow.get(),
+        mLayerStack, mDisplayWidth, mDisplayHeight,
         mOrientation, tr.getType(), getPageFlipCount(),
         mIsSecure, mSecureLayerVisible, mScreenAcquired, mVisibleLayersSortedByZ.size(),
         mViewport.left, mViewport.top, mViewport.right, mViewport.bottom,
