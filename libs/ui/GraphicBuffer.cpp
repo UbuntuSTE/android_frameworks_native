@@ -233,7 +233,7 @@ status_t GraphicBuffer::flatten(void*& buffer, size_t& size, int*& fds, size_t& 
         memcpy(&buf[8], h->data + h->numFds, h->numInts*sizeof(int));
     }
 
-    buffer = reinterpret_cast<void*>(static_cast<int*>(buffer) + sizeNeeded);
+    buffer = reinterpret_cast<void*>(static_cast<int*>(buffer + sizeNeeded));
     size -= sizeNeeded;
     fds += handle->numFds;
     count -= handle->numFds;
@@ -288,7 +288,7 @@ status_t GraphicBuffer::unflatten(
         }
     }
 
-    buffer = reinterpret_cast<void const*>(static_cast<int const*>(buffer) + sizeNeeded);
+    buffer = reinterpret_cast<void const*>(static_cast<int const*>(buffer + sizeNeeded));
     size -= sizeNeeded;
     fds += numFds;
     count -= numFds;
